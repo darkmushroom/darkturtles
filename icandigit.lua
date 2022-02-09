@@ -1,4 +1,4 @@
-local du = require "darkturtleutils.lua"
+local du = require "darkturtleutils"
 
 -- Nether Ice Bridge Excavator
 -- v1.0
