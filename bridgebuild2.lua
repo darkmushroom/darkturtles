@@ -1,3 +1,5 @@
+local du = require "darkturtleutils"
+
 -- Nether Ice Bridge Builder
 -- v0.0
 
@@ -18,99 +20,67 @@ local wall_top = "blockus:marble_bricks"
 local roof = "blockus:marble"
 local light = "blockus:redstone_lamp_lit"
 
--- will search for and select a block if found,
--- otherwise prompt user input
-local function grabSome(block)
-  -- short circuit if item is already selected
-  if turtle.getItemCount() > 0 then
-    if turtle.getItemDetail().name == block then
-      return true
-    end
-  end
-  
-  -- No luck. Gotta search
-  for i=1, 16, 1 do
-    turtle.select(i)
-    if turtle.getItemCount() > 0 then
-      if turtle.getItemDetail().name == block then
-        return true
-      end
-    end
-  end
-  print("We're out of "..block.."!")
-  print("Please insert "..block.." then press [Enter] to continue.")
-  boob = io.read()
-  grabSome(block)
-end
-
-local function fuelCheck()
-  if turtle.getFuelLevel() < 80 then
-    grabSome(fuel)
-    turtle.refuel(1)
-  end
-end
-
 local function buildSlice()
   --building bottom half 1 of 2
-  grabSome(foundation)
+  du.grabSome(foundation)
   turtle.placeDown()
   turtle.turnLeft()
   turtle.forward()
-  grabSome(track)
+  du.grabSome(track)
   turtle.placeDown()
   turtle.forward()
-  grabSome(foundation_corner)
+  du.grabSome(foundation_corner)
   turtle.placeDown()
   -- building left wall + left rail
-  grabSome(wall_bottom)
+  du.grabSome(wall_bottom)
   turtle.place()
   turtle.up()
-  grabSome(railing)
+  du.grabSome(railing)
   turtle.placeDown()
-  grabSome(wall_middle)
+  du.grabSome(wall_middle)
   turtle.place()
   turtle.up()
-  grabSome(wall_top)
+  du.grabSome(wall_top)
   turtle.place()
   -- working on the roof
-  grabSome(roof)
+  du.grabSome(roof)
   turtle.placeUp()
   turtle.back()
   turtle.up()
   turtle.turnRight()
   turtle.turnRight()
-  grabSome(roof)
+  du.grabSome(roof)
   turtle.placeUp()
   turtle.forward()
-  grabSome(light)
+  du.grabSome(light)
   turtle.placeUp()
   turtle.forward()
-  grabSome(roof)
+  du.grabSome(roof)
   turtle.placeUp()
-  grabSome(roof)
+  du.grabSome(roof)
   turtle.place()
   turtle.down()
   turtle.forward()
   -- building the right wall
-  grabSome(wall_top)
+  du.grabSome(wall_top)
   turtle.place()
   turtle.down()
-  grabSome(wall_middle)
+  du.grabSome(wall_middle)
   turtle.place()
   turtle.down()
-  grabSome(wall_bottom)
+  du.grabSome(wall_bottom)
   turtle.place()
   -- building bottom half 2 of 2
-  grabSome(foundation_corner)
+  du.grabSome(foundation_corner)
   turtle.placeDown()
   turtle.back()
-  grabSome(track)
+  du.grabSome(track)
   turtle.placeDown()
-  grabSome(railing)
+  du.grabSome(railing)
   turtle.place()
   turtle.back()
   turtle.back()
-  grabSome(railing)
+  du.grabSome(railing)
   turtle.place()
   -- orient for next slice
   turtle.turnLeft()
@@ -121,7 +91,7 @@ local function buildSlice()
 end
 
 local function buildSection()
-  fuelCheck() -- make sure we're juiced up
+  du.fuelCheck() -- make sure we're juiced up
   local templight = light
   buildSlice() -- build first slice with light
   light = roof -- build the rest with roof blocks
@@ -132,6 +102,7 @@ local function buildSection()
 end
 
 local function main()
+  du.clearScreen()
   print("Hello and welcome to the nether bridge builder v1")
   print("This program builds an ice rail in sections "..section_length.." long.")
   print("How many sections should I build?")
