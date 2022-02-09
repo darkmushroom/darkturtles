@@ -20,7 +20,7 @@ function darkturtleutils.grabSome(block)
   print("We're out of "..block.."!")
   print("Please insert "..block.." then press [Enter] to continue.")
   boob = io.read()
-  grabSome(block)
+  darkturtleutils.grabSome(block)
 end
 
 
