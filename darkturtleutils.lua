@@ -1,6 +1,6 @@
 local darkturtleutils = {}
 
-local function grabSome(block)
+local function darkturtleutils.grabSome(block)
   -- short circuit if item is already selected
   if turtle.getItemCount() > 0 then
     if turtle.getItemDetail().name == block then
@@ -24,14 +24,14 @@ local function grabSome(block)
 end
 
 
-local function fuelCheck()
+local function darkturtleutils.fuelCheck()
   if turtle.getFuelLevel() < 80 then
     grabSome(fuel)
     turtle.refuel(1)
   end
 end
 
-local function clearScreen()
+local function darkturtleutils.clearScreen()
   term.clear()
   term.setCursorPos(1,1)
 end
