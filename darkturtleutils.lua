@@ -1,4 +1,4 @@
-local darkutils = {}
+local darkturtleutils = {}
 
 local function grabSome(block)
   -- short circuit if item is already selected
