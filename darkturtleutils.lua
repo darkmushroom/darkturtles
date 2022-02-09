@@ -26,7 +26,7 @@ end
 
 function darkturtleutils.fuelCheck()
   if turtle.getFuelLevel() < 80 then
-    grabSome(fuel)
+    darkturtleutils.grabSome(fuel)
     turtle.refuel(1)
   end
 end
