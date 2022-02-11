@@ -91,7 +91,7 @@ local function buildSlice()
 end
 
 local function buildSection()
-  du.fuelCheck() -- make sure we're juiced up
+  du.fuelCheck(fuel) -- make sure we're juiced up
   local templight = light
   buildSlice() -- build first slice with light
   light = roof -- build the rest with roof blocks
