@@ -93,7 +93,7 @@ end
 
 local function main()
   setup()
-  du.fuelCheck()
+  du.fuelCheck(fuel)
   mineStart()
   while freespace > 3 do
     for i=1, length, 1 do

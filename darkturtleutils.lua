@@ -24,7 +24,7 @@ function darkturtleutils.grabSome(block)
 end
 
 
-function darkturtleutils.fuelCheck()
+function darkturtleutils.fuelCheck(fuel)
   if turtle.getFuelLevel() < 80 then
     darkturtleutils.grabSome(fuel)
     turtle.refuel(1)
