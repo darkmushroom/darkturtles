@@ -95,7 +95,7 @@ local function main()
   print("How far should I dig?")
   local distance = tonumber(io.read())
   for i=1, distance, 1 do
-    du.fuelCheck()
+    du.fuelCheck(fuel)
     dig()
   end
 end
