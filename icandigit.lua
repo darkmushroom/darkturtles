@@ -13,7 +13,7 @@ local foundation = "minecraft:netherrack"
 -- optionally digs up and places foundation underneath
 -- if block below is not foundation
 local function placeFoundation()
-  local isablock, theblock = turtle.inspectDown()
+  local _isablock, theblock = turtle.inspectDown()
     if not((theblock.name == foundation)) then
       turtle.digDown()
       du.grabSome(foundation)
