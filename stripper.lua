@@ -2,10 +2,10 @@ local du = require "darkturtleutils"
 
 --[[
     _       _                    
-__| |_ _ _(_)_ __ _ __  ___ _ _ 
+ __| |_ _ _(_)_ __ _ __  ___ _ _ 
 (_-<  _| '_| | '_ \ '_ \/ -_) '_|
 /__/\__|_| |_| .__/ .__/\___|_|  
-            |_|  |_|            
+              |_| |_|            
 
   Simple strip miner
   written by mensing.alexander@gmail.com
@@ -66,7 +66,7 @@ local function mineStart()
   turtle.forward()
 end
 
-local function mineLoop()
+local function mineLoop(currentstep)
   turtle.turnRight()
   digAllSides()
   turtle.forward()
@@ -80,7 +80,7 @@ local function mineLoop()
   turtle.forward()
   digAllSides()
   turtle.forward()
-  if (true) then --fix light placement
+  if (currentstep == 1) then
     turtle.turnLeft()
     du.grabSome(light)
     turtle.place()
@@ -91,13 +91,25 @@ local function mineLoop()
   turtle.forward()
 end
 
+local function updateFreeSpace()
+  local count = 0
+  for i=3, 16, 1 do
+    turtle.select(i)
+    if turtle.getItemCount() == 0 then
+      count++
+    end
+  end
+  freespace = count
+end
+
 local function main()
   setup()
-  du.fuelCheck(fuel)
   mineStart()
   while freespace > 3 do
+    du.fuelCheck(fuel)
     for i=1, length, 1 do
-      mineLoop()
+      mineLoop(i)
+      updateFreeSpace()
     end
   end
 end
